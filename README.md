@@ -1,4 +1,4 @@
-# eTimeDecorator
+# eTimeDecorator v1.0.0 (Elapsed Time Decorator)
 
 eTimeDecorator is a set of 3 decorators for Python 3.x and PyPy3 to measure the execution time of a function that records the minimum, average and maximum elapsed time of functions that execute hundreds/thousands of times per second. It also works with asyncio.
 
