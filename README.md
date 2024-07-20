@@ -121,7 +121,7 @@ The percentile indicated in the fields 50%, 75%, 90% and 99% means that 50% of e
 
 As we can see, the function struct_int2ip() is faster than the ipaddress_int2ip() and roots_int2ip() function. All of this was measured without having to place codes and make calculations in the middle of the function code. When putting it into production, just comment or delete the decorator call.
 
-And in the last 8000 executions with asyncio, we can make sure that the two functions async_ipaddress_int2ip() and async_struct_int2ip() have the same performance.
+And in the last 8000 executions, we can see that with asyncio the average elapsed time was much better than synchronously, and we can also see that the two functions async_ipaddress_int2ip() and async_struct_int2ip() obtained practically the same performance.
 
 This decorator uses the time.monotonic() function which is not impacted by machine time changes.
 
