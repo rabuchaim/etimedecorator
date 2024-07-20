@@ -2,6 +2,8 @@
 
 eTimeDecorator is a set of 3 decorators for Python 3.x and PyPy3 to measure the execution time of a function that records the minimum, average and maximum elapsed time of functions that execute hundreds/thousands of times per second. It also works with asyncio.
 
+![](https://raw.githubusercontent.com/rabuchaim/etimedecorator/main/example.png)
+
 ## Installation
 
 ```
@@ -10,16 +12,19 @@ pip install etimedecorator
 
 ## Decorators
 
-- **`elapsedTimeDecorator`**: It is a very simple decorator and displays the execution time of the decorated function. It is not suitable for functions that are called hundreds or thousands of times per second.
-    - **`@elapsedTimeDecorator`**
+- **`@elapsedTimeDecorator`**: It is a very simple decorator and displays the execution time of the decorated function. It is not suitable for functions that are called hundreds or thousands of times per second.
     - Output: *Elapsed Time for method_name(): 0.000001228 sec*
 
-- **`elapsedTimeAverageDecorator`**: This decorator is already suitable for reentrant functions with thousands of executions per second. Accepts the 'window_size' parameters that indicate after how many executions the minimum, average and maximum execution time statistics will be displayed. You can also define the number of decimal places to be displayed in statistics using the 'decimal_places' parameter, by default the number of decimal places is 9.
-    - **`@elapsedTimeAverageDecorator(window_size:int=1000,decimal_places:int=9)`**
+- **`@elapsedTimeAverageDecorator(window_size:int=1000,decimal_places:int=9)`**:
+
+    This decorator is already suitable for reentrant functions with thousands of executions per second. Accepts the 'window_size' parameters that indicate after how many executions the minimum, average and maximum execution time statistics will be displayed. You can also define the number of decimal places to be displayed in statistics using the 'decimal_places' parameter, by default the number of decimal places is 9.
+
     - Output: *Elapsed Time for method_name() - 1000 calls - Min:0.000000454 / Avg:0.000000597 / Max:0.000038203*
 
-- **`elapsedTimePercentileDecorator`**: This decorator is also suitable for reentrant functions with thousands of executions per second but displays the percentile calculation of the functions' execution time. Accepts the 'window_size' parameters that indicate after how many executions the minimum, average and maximum execution time statistics will be displayed. You can also define the number of decimal places to be displayed in statistics using the 'decimal_places' parameter, by default the number of decimal places is 9. *Because percentile calculation requires an ordered list of execution times, this method is slightly slower than the @elapsedTimeAverageDecorator method.*
-    - **`@elapsedTimePercentileDecorator(window_size:int=1000,decimal_places:int=9)`**
+- **`@elapsedTimePercentileDecorator(window_size:int=1000,decimal_places:int=9)`**
+
+    This decorator is also suitable for reentrant functions with thousands of executions per second but displays the percentile calculation of the functions' execution time. Accepts the 'window_size' parameters that indicate after how many executions the minimum, average and maximum execution time statistics will be displayed. You can also define the number of decimal places to be displayed in statistics using the 'decimal_places' parameter, by default the number of decimal places is 9. *Because percentile calculation requires an ordered list of execution times, this method is slightly slower than the @elapsedTimeAverageDecorator method.*
+
     - Output: *Elapsed Time for method_name() 1000 calls - Min:0.000000517 Avg:0.000000750 Max:0.000022660 - 50%:0.000000624 75%:0.000000688 90%:0.000001000 99%:0.000002410*
 
 
