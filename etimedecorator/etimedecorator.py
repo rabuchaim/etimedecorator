@@ -18,22 +18,6 @@ import time
 
 __all__ = ['elapsedTimeDecorator','elapsedTimeAverageDecorator','elapsedTimePercentileDecorator']
 
-##──── Decorator to get the elapsed time of a function ───────────────────────────────────────────────────────────────────────────
-def elapsedTimeDecorator(method):
-    """Displays statistics for each execution determined by the window_size parameter
-    
-    Output on every call: Elapsed Time for method_name(): 0.000003485 sec
-    """
-    def decorated_method(*args, **kwargs):
-        try:
-            startTime = time.monotonic()
-            result = method(*args, **kwargs)
-            print(f'\033[33mElapsed Time for {method.__name__}(): %.9f sec'%(time.monotonic()-startTime)+"\033[0m")
-            return result
-        except Exception as ERR:
-            print('\033[91m'+f"[ELAPSED_TIME_EXCEPTION] {method.__name__}(): {str(ERR)}"+'\033[0m')
-    return decorated_method
-
 ##──── a decorator to show the minimum_time, maximum_time and average_time time between requests ─────────────────────────────────
 def elapsedTimeAverageDecorator(window_size:int=1000,decimal_places:int=9):
     """Displays statistics for each set of executions determined by the window_size parameter.
@@ -119,3 +103,19 @@ def elapsedTimePercentileDecorator(window_size:int=1000,decimal_places:int=9):
         return decorated_method
 
     return decorator
+
+##──── A simple decorator to get the elapsed time of a function ───────────────────────────────────────────────────────────────────────────
+def elapsedTimeDecorator(method):
+    """Just displays the elapsed time on every call
+    
+    Output on every call: Elapsed Time for method_name(): 0.000003485 sec
+    """
+    def decorated_method(*args, **kwargs):
+        try:
+            startTime = time.monotonic()
+            result = method(*args, **kwargs)
+            print(f'\033[33mElapsed Time for {method.__name__}(): %.9f sec'%(time.monotonic()-startTime)+"\033[0m")
+            return result
+        except Exception as ERR:
+            print('\033[91m'+f"[ELAPSED_TIME_EXCEPTION] {method.__name__}(): {str(ERR)}"+'\033[0m')
+    return decorated_method
