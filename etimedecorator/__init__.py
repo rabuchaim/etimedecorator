@@ -1,1 +1,5 @@
-from etimedecorator.etimedecorator import elapsedTimeDecorator, elapsedTimeAverageDecorator, elapsedTimePercentileDecorator
+from etimedecorator.etimedecorator import (
+            elapsedTimeDecorator, 
+            elapsedTimeAverageDecorator, 
+            elapsedTimePercentileDecorator
+        )
